@@ -27,7 +27,7 @@ export default [
             resolve(),
             commonjs(),
             typescript({ tsconfig: './tsconfig.json', emitDeclarationOnly: true, declaration: true }),
-            terser({ keep_classnames: true, keep_fnames: true }),
+            terser({ mangle: false }),
         ],
     },
     {

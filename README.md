@@ -56,3 +56,5 @@ export class ApiClient {
     }
 }
 ```
+
+See [tests](https://github.com/nbottarini/http-client-js/blob/main/packages/axios-http-client/test/AxiosHttpClient.test.ts) for more use cases.

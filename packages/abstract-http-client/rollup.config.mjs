@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import dts from 'rollup-plugin-dts'
 import excludeDependenciesFromBundle from 'rollup-plugin-exclude-dependencies-from-bundle'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);

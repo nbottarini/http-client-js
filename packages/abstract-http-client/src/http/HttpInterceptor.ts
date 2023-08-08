@@ -4,5 +4,5 @@ import { HttpResponse } from './HttpResponse'
 export interface HttpInterceptor {
     onRequest?(request: HttpRequest): Promise<void>
     onResponse?(response: HttpResponse<any>): Promise<void>
-    onError?(error: Error): Error
+    onError?(error: Error, request: HttpRequest): Error
 }

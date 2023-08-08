@@ -1,12 +1,12 @@
 import { HttpInterceptor } from '../http/HttpInterceptor'
 import { HttpError } from '../errors/HttpError'
-import { NetworkError } from 'src/errors/NetworkError'
+import { NetworkError } from '../errors/NetworkError'
+import { HttpRequest } from '../http/HttpRequest'
 
 export class NetworkErrorInterceptor implements HttpInterceptor {
-    onError?(error: Error): Error {
+    onError?(error: Error, request: HttpRequest): Error {
         if (!(error instanceof HttpError) || !this.isNetworkError(error)) return error
-        let message = error.method.toString() + ' ' + error.url
-        return new NetworkError(message, error.status)
+        return new NetworkError(request, error)
     }
 
     private isNetworkError(error: HttpError) {

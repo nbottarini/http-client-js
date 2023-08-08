@@ -1,6 +1,6 @@
 {
   "name": "@nbottarini/axios-http-client",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Axios Http client implementation",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@nbottarini/abstract-http-client": "^0.3.0",
-    "asimov-javascript-extensions": "^0.5.4",
+    "@nbottarini/javascript-extensions": "^0.7.1",
     "axios": "^0.27.2"
   },
   "devDependencies": {

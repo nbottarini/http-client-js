@@ -44,9 +44,6 @@ jobs:
 
   publish-axios-http-client:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/axios-http-client
     needs: test
     if: startsWith(github.ref, 'refs/tags/release-axios-http-client-')
     steps:
@@ -63,5 +60,6 @@ jobs:
         run: yarn run build
       - name: Publish to npm
         run: npm publish --access public
+        working-directory: packages/axios-http-client
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

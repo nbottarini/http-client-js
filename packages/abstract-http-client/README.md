@@ -3,3 +3,15 @@
 
 # Abstract Http Client
 Abstract types to easily switch from http client implementations by using dependency inversion principle
+
+## Installation
+
+Npm:
+```
+$ npm install --save-dev @nbottarini/abstract-http-client
+```
+
+Yarn:
+```
+$ yarn add @nbottarini/abstract-http-client -D
+```

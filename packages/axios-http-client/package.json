@@ -1,10 +1,12 @@
 {
   "name": "@nbottarini/axios-http-client",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Axios Http client implementation",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "browser": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "react-native": "dist/esm/index.js",
   "author": "Nicolás Bottarini <nicolasbottarini@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/nbottarini/http-client-js#readme",

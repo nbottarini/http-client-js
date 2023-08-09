@@ -1,10 +1,12 @@
 {
   "name": "@nbottarini/abstract-http-client",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Abstract typescript types to easily switch from http client implementations by using dependency inversion principle",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "browser": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "react-native": "dist/esm/index.js",
   "author": "Nicolás Bottarini <nicolasbottarini@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/nbottarini/http-client-js#readme",

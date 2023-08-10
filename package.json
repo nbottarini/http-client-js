@@ -7,8 +7,9 @@
     "lint": "lerna run lint",
     "test": "lerna run test",
     "build": "lerna run build",
-    "build:ci": "lerna run build --skip-nx-cache",
-    "check-all": "yarn lint && yarn test"
+    "clean": "lerna clean --yes && npx rimraf node_modules",
+    "check-all": "yarn lint && yarn test",
+    "publish": "yarn check-all && lerna exec --no-private -- yarn npm publish"
   },
   "packageManager": "yarn@3.5.1",
   "workspaces": {

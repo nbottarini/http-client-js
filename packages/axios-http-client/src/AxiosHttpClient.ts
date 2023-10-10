@@ -118,7 +118,7 @@ export class AxiosHttpClient implements HttpClient {
     }
 
     private createHttpError(error: AxiosError, request: HttpRequest, baseUrl: string | undefined): HttpError {
-        if (error.code == 'ECONNREFUSED') return this.createNetworkError(error, request, baseUrl)
+        if (['ECONNREFUSED', 'ERR_NETWORK'].includes(error.code)) return this.createNetworkError(error, request, baseUrl)
         const urlHelper = new UrlHelper(baseUrl, request.url)
         const response: HttpResponse<any> = {
             method: request.method,
@@ -137,7 +137,7 @@ export class AxiosHttpClient implements HttpClient {
         const response: HttpResponse<any> = {
             method: request.method,
             status: 0,
-            statusText: 'ECONNREFUSED',
+            statusText: error.code,
             url: urlHelper.absoluteUrl,
             headers: error.response?.headers ?? {},
             body: error.response?.data,

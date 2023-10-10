@@ -10,6 +10,6 @@ export class NetworkErrorInterceptor implements HttpInterceptor {
     }
 
     private isNetworkError(error: HttpError) {
-        return error.innerError.message === 'Network Error' || [502, 503, 504].includes(error.status)
+        return error.innerError?.message === 'Network Error' || [0, 502, 503, 504].includes(error.status)
     }
 }

@@ -11,9 +11,9 @@ export class HttpError extends BaseError {
     constructor(
         request: HttpRequest,
         response: HttpResponse<any>|null,
-        innerError: Error,
+        innerError: Error|null = null,
     ) {
-        super(`Http error: ${request.method} ${request.url} ${response?.status} ${response?.statusText} - ${innerError.message}`)
+        super(`Http error: ${request.method} ${request.url}` + (response ? ` ${response?.status} ${response?.statusText}` : '') + (innerError ? ` - ${innerError.message}` : ''))
         this._request = request
         this._response = response
         this._innerError = innerError

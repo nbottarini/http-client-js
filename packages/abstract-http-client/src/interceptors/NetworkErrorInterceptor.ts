@@ -5,8 +5,8 @@ import { HttpRequest } from '../http/HttpRequest'
 
 export class NetworkErrorInterceptor implements HttpInterceptor {
     onError?(error: Error, request: HttpRequest): Error {
-        if (!(error instanceof HttpError) || !this.isNetworkError(error)) return error
-        return new NetworkError(request, error.response)
+        if (error instanceof NetworkError || !(error instanceof HttpError) || !this.isNetworkError(error)) return error
+        return new NetworkError(request, error.response, error?.innerError)
     }
 
     private isNetworkError(error: HttpError) {

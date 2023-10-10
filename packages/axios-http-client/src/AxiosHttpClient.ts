@@ -7,6 +7,7 @@ import {
     HttpMethods,
     HttpRequest,
     HttpResponse,
+    NetworkError,
     NetworkErrorInterceptor,
     RequestOptions,
     ResponseBodyConversions,
@@ -117,6 +118,7 @@ export class AxiosHttpClient implements HttpClient {
     }
 
     private createHttpError(error: AxiosError, request: HttpRequest, baseUrl: string | undefined): HttpError {
+        if (error.code == 'ECONNREFUSED') return this.createNetworkError(error, request, baseUrl)
         const urlHelper = new UrlHelper(baseUrl, request.url)
         const response: HttpResponse<any> = {
             method: request.method,
@@ -128,6 +130,20 @@ export class AxiosHttpClient implements HttpClient {
             request,
         }
         return new HttpError(request, response, error)
+    }
+
+    private createNetworkError(error: AxiosError, request: HttpRequest, baseUrl: string|undefined) {
+        const urlHelper = new UrlHelper(baseUrl, request.url)
+        const response: HttpResponse<any> = {
+            method: request.method,
+            status: 0,
+            statusText: 'ECONNREFUSED',
+            url: urlHelper.absoluteUrl,
+            headers: error.response?.headers ?? {},
+            body: error.response?.data,
+            request,
+        }
+        return new NetworkError(request, response, error)
     }
 
     private responseBodyConversionToResponseType(responseBodyConversion: ResponseBodyConversions): ResponseType {

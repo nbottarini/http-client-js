@@ -6,14 +6,15 @@ import { HttpResponse } from '../http/HttpResponse'
 export class HttpError extends BaseError {
     private readonly _request: HttpRequest
     private readonly _response: HttpResponse<any>|null
-    private readonly _innerError: Error
+    private readonly _innerError: Error|null
 
     constructor(
         request: HttpRequest,
         response: HttpResponse<any>|null,
         innerError: Error|null = null,
+        message: string = `Http error: ${request.method} ${request.url}` + (response ? ` ${response.status} ${response.statusText}` : '') + (innerError ? ` - ${innerError.message}` : '')
     ) {
-        super(`Http error: ${request.method} ${request.url}` + (response ? ` ${response?.status} ${response?.statusText}` : '') + (innerError ? ` - ${innerError.message}` : ''))
+        super(message)
         this._request = request
         this._response = response
         this._innerError = innerError
@@ -27,7 +28,7 @@ export class HttpError extends BaseError {
         return this._response
     }
 
-    get innerError(): Error {
+    get innerError(): Error|null {
         return this._innerError
     }
 

@@ -1,4 +1,4 @@
-import axios, { AxiosAdapter, AxiosError, AxiosInstance, Method, ResponseType } from 'axios'
+import axios, { AxiosAdapter, AxiosError, AxiosInstance, AxiosRequestConfig, Method, ResponseType } from 'axios'
 import { ResponseFactory } from './ResponseFactory'
 import {
     HttpClient,
@@ -23,12 +23,12 @@ export class AxiosHttpClient implements HttpClient {
         new NetworkErrorInterceptor(),
     ]
 
-    constructor(baseUrl: string | undefined = undefined, axiosAdapter: AxiosAdapter | undefined = axios.defaults.adapter) {
+    constructor(baseUrl: string | undefined = undefined, axiosAdapter: AxiosAdapter | undefined = axios.defaults.adapter, axiosConfig: AxiosRequestConfig = { withCredentials: true }) {
         this.baseUrl = baseUrl
         this.http = axios.create({
             baseURL: baseUrl,
             adapter: axiosAdapter,
-            withCredentials: true,
+            ...axiosConfig,
         })
     }
 
